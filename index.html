@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Camera PFE — Captura com Identificação</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="topo">
+    <h1>📸 Camera PFE</h1>
+    <p>Captura com efeito visual, identificação e data/hora gravadas na imagem</p>
+  </header>
+
+  <main class="conteudo">
+
+    <!-- ============ PAINEL DE CONTROLE ============ -->
+    <section class="painel" aria-label="Controles da aplicação">
+
+      <div class="campo">
+        <label for="nome">Identificação (nome do aluno)</label>
+        <input
+          type="text"
+          id="nome"
+          maxlength="40"
+          placeholder="Ex.: Maria Silva"
+          autocomplete="off"
+        />
+      </div>
+
+      <div class="campo">
+        <label for="efeito">Efeito visual (context.filter)</label>
+        <select id="efeito">
+          <option value="sepia(1)">Sépia</option>
+          <option value="grayscale(1)">Preto e branco</option>
+          <option value="invert(1)">Invertido</option>
+          <option value="contrast(1.6) saturate(1.8)">Alto contraste</option>
+          <option value="blur(3px)">Desfoque</option>
+        </select>
+      </div>
+
+      <div class="botoes">
+        <button id="btnLigar"    class="btn btn-primario">Ligar câmera</button>
+        <button id="btnCapturar" class="btn btn-destaque" disabled>Capturar</button>
+        <button id="btnDesligar" class="btn btn-perigo"   disabled>Desligar câmera</button>
+      </div>
+
+      <p id="mensagem" class="mensagem info" role="status" aria-live="polite">
+        Clique em “Ligar câmera” para começar.
+      </p>
+    </section>
+
+    <!-- ============ PALCO: VÍDEO + RESULTADO ============ -->
+    <section class="palco">
+
+      <figure class="caixa caixa-video">
+        <video id="video" autoplay playsinline muted></video>
+        <figcaption id="avisoVideo" class="aviso">Câmera desligada</figcaption>
+      </figure>
+
+      <figure class="caixa caixa-resultado">
+        <canvas id="canvas"></canvas>
+        <figcaption id="avisoCanvas" class="aviso">A imagem capturada aparecerá aqui</figcaption>
+      </figure>
+
+      <a id="btnDownload" class="btn btn-secundario" download="captura.png" hidden>
+        ⬇ Baixar imagem
+      </a>
+    </section>
+
+  </main>
+
+  <footer class="rodape">
+    <p>Programação Front-End • Professora Andreza Quintas</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

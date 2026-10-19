@@ -1,0 +1,247 @@
+/* =========================================================
+   Camera_PFE — Estilos
+   ========================================================= */
+
+:root {
+  --bg:            #0d1526;
+  --bg-2:          #111d33;
+  --painel:        #1a2740;
+  --painel-2:      #22334f;
+  --texto:         #e8eefc;
+  --texto-suave:   #9fb0cc;
+  --destaque:      #00e0a4;
+  --destaque-2:    #00a97c;
+  --perigo:        #ff6b6b;
+  --borda:         rgba(255, 255, 255, .10);
+  --raio:          14px;
+  --sombra:        0 10px 30px rgba(0, 0, 0, .35);
+}
+
+* { box-sizing: border-box; }
+
+/* garante que o atributo hidden sempre vença as regras de layout */
+[hidden] { display: none !important; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: "Segoe UI", Roboto, system-ui, Arial, sans-serif;
+  color: var(--texto);
+  background:
+    radial-gradient(900px 500px at 15% -10%, rgba(0, 224, 164, .14), transparent 60%),
+    radial-gradient(800px 500px at 110% 10%, rgba(76, 132, 255, .16), transparent 60%),
+    linear-gradient(160deg, var(--bg), var(--bg-2));
+  background-attachment: fixed;
+}
+
+/* ---------------- Cabeçalho ---------------- */
+.topo {
+  padding: 28px 20px 12px;
+  text-align: center;
+}
+
+.topo h1 {
+  margin: 0 0 6px;
+  font-size: clamp(1.5rem, 4vw, 2.1rem);
+  letter-spacing: .5px;
+}
+
+.topo p {
+  margin: 0;
+  color: var(--texto-suave);
+  font-size: .95rem;
+}
+
+/* ---------------- Layout principal ---------------- */
+.conteudo {
+  flex: 1;
+  width: min(1150px, 100%);
+  margin: 0 auto;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+/* ---------------- Painel ---------------- */
+.painel {
+  background: linear-gradient(180deg, var(--painel), var(--painel-2));
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  padding: 20px;
+  box-shadow: var(--sombra);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.campo label {
+  font-size: .8rem;
+  font-weight: 600;
+  letter-spacing: .6px;
+  text-transform: uppercase;
+  color: var(--texto-suave);
+}
+
+.campo input,
+.campo select {
+  padding: 11px 12px;
+  font-size: .95rem;
+  font-family: inherit;
+  color: var(--texto);
+  background: rgba(255, 255, 255, .06);
+  border: 1px solid var(--borda);
+  border-radius: 10px;
+  outline: none;
+  transition: border-color .2s, box-shadow .2s;
+}
+
+.campo input::placeholder { color: #6c7f9c; }
+
+.campo input:focus,
+.campo select:focus {
+  border-color: var(--destaque);
+  box-shadow: 0 0 0 3px rgba(0, 224, 164, .18);
+}
+
+.campo select option { background: var(--painel); color: var(--texto); }
+
+/* ---------------- Botões ---------------- */
+.botoes {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.btn {
+  padding: 12px 16px;
+  font-size: .95rem;
+  font-family: inherit;
+  font-weight: 600;
+  color: #06121f;
+  background: var(--destaque);
+  border: 1px solid transparent;
+  border-radius: 10px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  transition: transform .12s, filter .2s, opacity .2s;
+}
+
+.btn:hover:not(:disabled) { filter: brightness(1.08); transform: translateY(-1px); }
+.btn:active:not(:disabled) { transform: translateY(0); }
+
+.btn:disabled {
+  opacity: .38;
+  cursor: not-allowed;
+  filter: grayscale(.6);
+}
+
+.btn-primario  { background: #4c84ff; color: #fff; }
+.btn-destaque  { background: var(--destaque); }
+.btn-perigo    { background: var(--perigo); color: #2a0505; }
+.btn-secundario{
+  background: transparent;
+  color: var(--destaque);
+  border: 1px solid var(--destaque);
+  justify-self: start;
+}
+.btn-secundario:hover:not(:disabled) { background: rgba(0, 224, 164, .12); }
+
+/* ---------------- Mensagens ---------------- */
+.mensagem {
+  margin: 0;
+  padding: 11px 13px;
+  font-size: .86rem;
+  line-height: 1.45;
+  border-radius: 10px;
+  border-left: 4px solid var(--texto-suave);
+  background: rgba(255, 255, 255, .05);
+  color: var(--texto-suave);
+}
+
+.mensagem.ok    { border-left-color: var(--destaque); color: #b8ffe6; background: rgba(0, 224, 164, .10); }
+.mensagem.erro  { border-left-color: var(--perigo);   color: #ffd2d2; background: rgba(255, 107, 107, .12); }
+.mensagem.info  { border-left-color: #4c84ff;         color: #d3e2ff; background: rgba(76, 132, 255, .12); }
+
+/* ---------------- Palco ---------------- */
+.palco {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.caixa {
+  position: relative;
+  margin: 0;
+  aspect-ratio: 16 / 9;
+  background: #050a12;
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  overflow: hidden;
+  box-shadow: var(--sombra);
+}
+
+.caixa video {
+  display: none;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.caixa video.ativa { display: block; }
+
+.caixa canvas {
+  display: none;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #050a12;
+}
+
+.caixa canvas.visivel { display: block; }
+
+.aviso {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  text-align: center;
+  font-size: .95rem;
+  color: var(--texto-suave);
+  background:
+    repeating-linear-gradient(
+      45deg,
+      rgba(255, 255, 255, .02) 0 12px,
+      transparent 12px 24px
+    );
+}
+
+/* ---------------- Rodapé ---------------- */
+.rodape {
+  padding: 18px;
+  text-align: center;
+  font-size: .8rem;
+  color: #6c7f9c;
+}
+
+/* ---------------- Responsivo ---------------- */
+@media (max-width: 860px) {
+  .conteudo {
+    grid-template-columns: 1fr;
+    padding: 14px;
+  }
+
+  .botoes { flex-direction: row; flex-wrap: wrap; }
+  .botoes .btn { flex: 1 1 140px; }
+}
